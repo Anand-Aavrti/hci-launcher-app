@@ -8,7 +8,7 @@ const products = [
   {
     id: 1,
     key: "whiteboard",
-    title: "Web Whiteboard",
+    title: "Whiteboard",//sir
     description: "Interactive digital whiteboard for patient information, care plans, and team collaboration.",
     image: "/demo-images/whiteboard.jpg"
   },
@@ -22,7 +22,7 @@ const products = [
   {
     id: 3,
     key: "wallmate",
-    title: "Web WallMate",
+    title: "WallMate",
     description: "Smart room control solution for patients to manage environment and access entertainment.",
     image: "/demo-images/wallmate.jpg"
   },
@@ -57,7 +57,7 @@ const products = [
   {
     id: 8,
     key: "discharge",
-    title: "Discharge Record App",
+    title: "Discharge Records",
     description: "Streamlined discharge process management for clinical staff and patients.",
     image: "/demo-images/discharge.jpg"
   },
@@ -82,13 +82,13 @@ const ProductGrid = () => {
               key={product.id}
               className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full"
             >
-              <div className="mb-4 flex justify-center items-center">
+              {/* <div className="mb-4 flex justify-center items-center">
                 <img 
                   src={product.image}
                   alt={`${product.title} icon`}
                   className="w-16 h-16 rounded shadow object-cover"
                 />
-              </div>
+              </div> */}
               <h3 className="text-lg sm:text-xl font-semibold text-hci-navy">{product.title}</h3>
               <p className="mt-2 text-sm sm:text-base text-gray-600 flex-grow">{product.description}</p>
               <div className="mt-4 sm:mt-6">
