@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Menu, X, LogIn, UserPlus } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
+import { Menu, X, LogIn } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Navbar = () => {
   const isMobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { user, setShowLogoutDialog } = useAuth();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleLogoutClick = () => {
+    setShowLogoutDialog(true);
+    if (isMobile) {
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -41,8 +48,8 @@ const Navbar = () => {
             </Button>
 
             {user ? (
-              <Button
-                onClick={() => logout()}
+              <Button 
+                onClick={handleLogoutClick} 
                 className="ml-4 bg-hci-blue hover:bg-hci-blue/90 text-white"
               >
                 Sign out
@@ -56,13 +63,6 @@ const Navbar = () => {
                 >
                   <LogIn className="mr-2 h-4 w-4" />
                   Sign in
-                </Button>
-                <Button
-                  onClick={() => navigate("/auth/signup")}
-                  className="bg-hci-blue hover:bg-hci-blue/90 text-white"
-                >
-                  <UserPlus className="mr-2 h-4 w-4" />
-                  Sign up
                 </Button>
               </>
             )}
@@ -96,11 +96,8 @@ const Navbar = () => {
             </a>
 
             {user ? (
-              <Button
-                onClick={() => {
-                  logout();
-                  setIsMenuOpen(false);
-                }}
+              <Button 
+                onClick={handleLogoutClick}
                 className="w-full mt-2 bg-hci-blue hover:bg-hci-blue/90 text-white"
               >
                 Sign out
@@ -117,16 +114,6 @@ const Navbar = () => {
                 >
                   <LogIn className="mr-2 h-4 w-4" />
                   Sign in
-                </Button>
-                <Button
-                  onClick={() => {
-                    navigate("/auth/signup");
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full mt-2 bg-hci-blue hover:bg-hci-blue/90 text-white"
-                >
-                  <UserPlus className="mr-2 h-4 w-4" />
-                  Sign up
                 </Button>
               </>
             )}
